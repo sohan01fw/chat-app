@@ -41,33 +41,33 @@ const Message = ({ UsersSelected, filterData, UserAvatar, socket }) => {
         message: msg,
       });
       console.log(sendMsgs);
-      /* socket.current.emit("send-msg", {
+      socket.current.emit("send-msg", {
         from: UserAvatar._id,
         to: filterData[UsersSelected]._id,
         message: msg,
       });
       const msgs = [...message];
       msgs.push({ fromSelf: true, message: msg });
-      setmessage(msgs); */
+      setmessage(msgs);
 
       setmsg("");
     } catch (error) {
       console.log(error);
     }
   };
-  /*  useEffect(() => {
+  useEffect(() => {
     if (socket.current) {
       socket.current.on("msg-recieve", (msg) => {
         setArrivalMessage({ fromSelf: false, message: msg });
       });
     }
-  }, [socket]); */
-  /* useEffect(() => {
+  }, [socket]);
+  useEffect(() => {
     arrivalMessage && setmessage((prev) => [...prev, arrivalMessage]);
-  }, [arrivalMessage]); */
-  /* useEffect(() => {
+  }, [arrivalMessage]);
+  useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [message]); */
+  }, [message]);
   return (
     <Container>
       <div className="chatHeader">
@@ -84,10 +84,8 @@ const Message = ({ UsersSelected, filterData, UserAvatar, socket }) => {
           message.map((msg, index) => {
             return (
               <div
-                /* ref={scrollRef}
-                key={uuidv4()} */
-                /*  key={index} */
-
+                ref={scrollRef}
+                key={uuidv4()}
                 className={msg.fromSelf ? "sendMsg" : "receiveMsg"}
               >
                 {msg.message}
@@ -142,7 +140,6 @@ const ChatContainer = styled.div`
   .input {
     border: 1px solid white;
     width: 100%;
-    /*   padding-right: 30px; */
   }
 `;
 const ChatInput = styled.input`
